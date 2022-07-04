@@ -1,6 +1,6 @@
 package com.example.kotlin_demo.presentation
 
- import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -9,8 +9,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 
-
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,7 +24,5 @@ class MainActivity : AppCompatActivity() {
             findViewById<BottomNavigationView>(R.id.activity_main_bottom_navigation_view)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
 
-
     }
-
 }
