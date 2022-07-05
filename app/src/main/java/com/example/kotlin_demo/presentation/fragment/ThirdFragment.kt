@@ -1,4 +1,4 @@
-package com.example.kotlin_demo.presentation
+package com.example.kotlin_demo.presentation.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,6 +16,4 @@ class ThirdFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_third, container, false)
     }
-
-
 }

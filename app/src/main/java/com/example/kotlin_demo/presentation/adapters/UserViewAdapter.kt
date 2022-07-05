@@ -1,4 +1,4 @@
-package com.example.kotlin_demo.presentation
+package com.example.kotlin_demo.presentation.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,8 @@ import com.example.kotlin_demo.data.CountryModel
 import kotlinx.android.synthetic.main.card_view.view.*
 
 
-class UserViewAdapter(private val country: ArrayList<CountryModel>,private val itemClick : (countryModel : CountryModel)->Unit) :
+class UserViewAdapter(private val country: ArrayList<CountryModel>,
+                      private val itemClick : (countryModel : CountryModel)->Unit) :
     RecyclerView.Adapter<UserViewAdapter.UserViewHolder>() {
 
     fun updateUserList(newUser:List<CountryModel>){
@@ -18,7 +19,7 @@ class UserViewAdapter(private val country: ArrayList<CountryModel>,private val i
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  UserViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_view, parent, false)
         return  UserViewHolder(view)

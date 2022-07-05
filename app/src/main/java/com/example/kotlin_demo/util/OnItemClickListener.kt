@@ -1,4 +1,4 @@
-package com.example.kotlin_demo.presentation
+package com.example.kotlin_demo.util
 
 
 interface OnItemClickListener {

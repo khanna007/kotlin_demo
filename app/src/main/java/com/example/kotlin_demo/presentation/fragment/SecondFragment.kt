@@ -1,4 +1,4 @@
-package com.example.kotlin_demo.presentation
+package com.example.kotlin_demo.presentation.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,12 +18,6 @@ class SecondFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         return inflater.inflate(R.layout.fragment_second, container, false)
-
-
     }
-
-
 }

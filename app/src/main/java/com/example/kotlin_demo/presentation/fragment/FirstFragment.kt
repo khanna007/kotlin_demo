@@ -1,4 +1,4 @@
-package com.example.kotlin_demo.presentation
+package com.example.kotlin_demo.presentation.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,11 +15,11 @@ import androidx.lifecycle.Observer
 import com.example.kotlin_demo.data.CountryModel
 import com.example.kotlin_demo.data.local.CountryDao
 import com.example.kotlin_demo.data.local.countryNoteDb
-import com.example.kotlin_demo.util.CountryMapper
+import com.example.kotlin_demo.presentation.adapters.UserViewAdapter
 
 class FirstFragment : Fragment()  {
     lateinit  var dbCountrydow : CountryDao
-    lateinit var userViewAdapter:  UserViewAdapter
+    lateinit var userViewAdapter: UserViewAdapter
     lateinit var viewModel: ListViewModel
     private val countriesAdapter = UserViewAdapter(arrayListOf(),this::onClick)
 
