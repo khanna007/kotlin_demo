@@ -12,11 +12,16 @@ import kotlinx.android.synthetic.main.fragment_first.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin_demo.view_model.ListViewModel
 import androidx.lifecycle.Observer
+import com.example.kotlin_demo.data.CountryModel
+import com.example.kotlin_demo.data.local.CountryDao
+import com.example.kotlin_demo.data.local.countryNoteDb
+import com.example.kotlin_demo.util.CountryMapper
 
-class FirstFragment : Fragment() , OnItemClickListener {
+class FirstFragment : Fragment()  {
+    lateinit  var dbCountrydow : CountryDao
     lateinit var userViewAdapter:  UserViewAdapter
     lateinit var viewModel: ListViewModel
-    private val countriesAdapter = UserViewAdapter(arrayListOf())
+    private val countriesAdapter = UserViewAdapter(arrayListOf(),this::onClick)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +33,7 @@ class FirstFragment : Fragment() , OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dbCountrydow = countryNoteDb.getInstance(context!!).countryDow()
         viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
         viewModel.refresh()
         userViewAdapter = countriesAdapter // context mtlb device ka access milega
@@ -63,7 +69,8 @@ class FirstFragment : Fragment() , OnItemClickListener {
         })
     }
 
-    override fun onClick(position: Int) {
-        println("postion$position")
+      fun onClick(countryModel: CountryModel ) {
+//        dbCountrydow.insert(CountryMapper().transferDomailModelToLocalModel(countryModel))
+//        println("postion$position")
     }
 }

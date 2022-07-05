@@ -1,9 +1,12 @@
 package com.example.kotlin_demo.view_model
 
+ import android.content.Context
  import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlin_demo.data.CountryModel
  import com.example.kotlin_demo.data.UserService
+ import com.example.kotlin_demo.data.local.CountryDao
+ import com.example.kotlin_demo.data.local.countryNoteDb
  import io.reactivex.android.schedulers.AndroidSchedulers
  import io.reactivex.disposables.CompositeDisposable
  import io.reactivex.disposables.Disposable
@@ -12,6 +15,7 @@ import com.example.kotlin_demo.data.CountryModel
 
 
 class ListViewModel : ViewModel() {
+
     private val userSerice = UserService()
     private val disposable = CompositeDisposable()  // close or clear the variable
     val users = MutableLiveData<List<CountryModel>>()
@@ -37,7 +41,6 @@ class ListViewModel : ViewModel() {
                     userLoadError.value = true
                     userLoading.value = true
                 }
-
             })
         )
     }

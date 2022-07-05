@@ -9,7 +9,7 @@ import com.example.kotlin_demo.data.CountryModel
 import kotlinx.android.synthetic.main.card_view.view.*
 
 
-class UserViewAdapter(private val country: ArrayList<CountryModel>) :
+class UserViewAdapter(private val country: ArrayList<CountryModel>,private val itemClick : (countryModel : CountryModel)->Unit) :
     RecyclerView.Adapter<UserViewAdapter.UserViewHolder>() {
 
     fun updateUserList(newUser:List<CountryModel>){
@@ -33,14 +33,14 @@ class UserViewAdapter(private val country: ArrayList<CountryModel>) :
         return country.size
     }
 
-     class UserViewHolder( itemView : View) : RecyclerView.ViewHolder(itemView){
+   inner class UserViewHolder( itemView : View) : RecyclerView.ViewHolder(itemView){
         private val imageView = itemView.imageView
          val countryName: TextView = itemView.findViewById(R.id.name)
          val countryCapital: TextView = itemView.findViewById(R.id.capital)
-//        init {
-//            itemView.setOnClickListener {
-//                listener.onClick(adapterPosition)
-//            }
-//        }
+        init {
+            itemView.setOnClickListener {
+                itemClick(country[adapterPosition])
+            }
+        }
     }
 }
