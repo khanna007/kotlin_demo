@@ -5,9 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class CountryModel(
     @SerializedName("name")
     val countryName: String?,
-    @SerializedName("capital")
+    @SerializedName("brewery_type")
     val capital: String?,
-    @SerializedName("flagPNG")
-    val flag: String?
 )
-

@@ -10,30 +10,30 @@ import androidx.navigation.findNavController
 import com.example.kotlin_demo.R
 import kotlinx.android.synthetic.main.fragment_first.*
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlin_demo.view_model.ListViewModel
+import com.example.kotlin_demo.presentation.view_model.ListViewModel
 import androidx.lifecycle.Observer
 import com.example.kotlin_demo.data.CountryModel
-import com.example.kotlin_demo.data.local.CountryDao
-import com.example.kotlin_demo.data.local.countryNoteDb
 import com.example.kotlin_demo.presentation.adapters.UserViewAdapter
 
-class FirstFragment : Fragment()  {
-    lateinit  var dbCountrydow : CountryDao
-    lateinit var userViewAdapter: UserViewAdapter
+ class FirstFragment : Fragment()  {
+     lateinit var userViewAdapter: UserViewAdapter
     lateinit var viewModel: ListViewModel
     private val countriesAdapter = UserViewAdapter(arrayListOf(),this::onClick)
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dbCountrydow = countryNoteDb.getInstance(context!!).countryDow()
+
         viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
         viewModel.refresh()
         userViewAdapter = countriesAdapter // context mtlb device ka access milega

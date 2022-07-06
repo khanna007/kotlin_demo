@@ -1,15 +1,12 @@
-package com.example.kotlin_demo.view_model
+package com.example.kotlin_demo.presentation.view_model
 
- import android.content.Context
  import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlin_demo.data.CountryModel
- import com.example.kotlin_demo.data.UserService
- import com.example.kotlin_demo.data.local.CountryDao
- import com.example.kotlin_demo.data.local.countryNoteDb
+ import com.example.kotlin_demo.data.repository.UserService
+
  import io.reactivex.android.schedulers.AndroidSchedulers
  import io.reactivex.disposables.CompositeDisposable
- import io.reactivex.disposables.Disposable
  import io.reactivex.observers.DisposableSingleObserver
  import io.reactivex.schedulers.Schedulers
 
