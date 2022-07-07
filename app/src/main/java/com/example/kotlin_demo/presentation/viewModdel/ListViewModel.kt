@@ -1,19 +1,20 @@
-package com.example.kotlin_demo.presentation.view_model
+package com.example.kotlin_demo.presentation.viewModdel
 
  import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlin_demo.data.CountryModel
- import com.example.kotlin_demo.data.repository.UserService
+  import com.example.kotlin_demo.domain.use_case.GetCountryUseCase
 
  import io.reactivex.android.schedulers.AndroidSchedulers
  import io.reactivex.disposables.CompositeDisposable
  import io.reactivex.observers.DisposableSingleObserver
  import io.reactivex.schedulers.Schedulers
+ import javax.inject.Inject
 
 
-class ListViewModel : ViewModel() {
+class ListViewModel @Inject constructor(private val getCountryUseCase: GetCountryUseCase) : ViewModel() {
 
-    private val userSerice = UserService()
+
     private val disposable = CompositeDisposable()  // close or clear the variable
     val users = MutableLiveData<List<CountryModel>>()
     val userLoadError = MutableLiveData<Boolean>()
@@ -25,7 +26,7 @@ class ListViewModel : ViewModel() {
     private fun fetchUserdata(){
         userLoading.value = true
         disposable.add(
-            userSerice.getUserDetails().subscribeOn(
+            getCountryUseCase.execute().subscribeOn(
                 Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).
             subscribeWith(object : DisposableSingleObserver<List<CountryModel>>(){
                 override fun onSuccess(t: List<CountryModel>) {

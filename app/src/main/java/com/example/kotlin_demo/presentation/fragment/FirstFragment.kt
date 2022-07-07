@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import com.example.kotlin_demo.R
 import kotlinx.android.synthetic.main.fragment_first.*
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlin_demo.presentation.view_model.ListViewModel
+import com.example.kotlin_demo.presentation.viewModdel.ListViewModel
 import androidx.lifecycle.Observer
 import com.example.kotlin_demo.data.CountryModel
 import com.example.kotlin_demo.presentation.adapters.UserViewAdapter
@@ -40,9 +39,6 @@ import com.example.kotlin_demo.presentation.adapters.UserViewAdapter
         recycler_view.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter =userViewAdapter
-        }
-        button_first.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
         observeViewModel()
     }

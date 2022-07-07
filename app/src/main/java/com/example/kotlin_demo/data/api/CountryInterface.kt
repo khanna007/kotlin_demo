@@ -1,4 +1,4 @@
-package com.example.kotlin_demo.data.remote
+package com.example.kotlin_demo.data.api
 
 import com.example.kotlin_demo.data.CountryModel
 import io.reactivex.Single
