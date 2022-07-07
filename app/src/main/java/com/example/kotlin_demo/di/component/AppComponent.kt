@@ -10,11 +10,13 @@ import com.example.kotlin_demo.presentation.MainActivity
 import com.example.kotlin_demo.presentation.fragment.FirstFragment
 
 
+
 @Singleton
 @Component(modules = [AppModule::class, NetworkModule::class, DataModule::class])
 
 interface AppComponent {
+
     fun inject(application : CountryApplication)
-    fun inject(activity: MainActivity?)
-    fun inject(fragment : FirstFragment?)
+    fun inject(activity: MainActivity)
+    fun inject(fragment : FirstFragment)
 }

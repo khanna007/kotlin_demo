@@ -8,6 +8,7 @@ import com.example.kotlin_demo.R
 import com.example.kotlin_demo.di.component.AppComponent
 import com.example.kotlin_demo.di.core.module.AppModule
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.kotlin_demo.di.component.DaggerAppComponent
 
 
 

@@ -28,7 +28,7 @@ class ListViewModel @Inject constructor(private val getCountryUseCase: GetCountr
         disposable.add(
             getCountryUseCase.execute().subscribeOn(
                 Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).
-            subscribeWith(object : DisposableSingleObserver<List<CountryModel>>(){
+                subscribeWith(object : DisposableSingleObserver<List<CountryModel>>(){
                 override fun onSuccess(t: List<CountryModel>) {
                     users.value =  t
                     userLoadError.value = false

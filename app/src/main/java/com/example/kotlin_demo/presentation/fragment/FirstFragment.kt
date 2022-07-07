@@ -11,10 +11,15 @@ import kotlinx.android.synthetic.main.fragment_first.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin_demo.presentation.viewModdel.ListViewModel
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.kotlin_demo.data.CountryModel
 import com.example.kotlin_demo.presentation.adapters.UserViewAdapter
+import javax.inject.Inject
 
- class FirstFragment : Fragment()  {
+
+class FirstFragment : Fragment()  {
+      @Inject
+     lateinit var viewModelFactory: ViewModelProvider.Factory
      lateinit var userViewAdapter: UserViewAdapter
     lateinit var viewModel: ListViewModel
     private val countriesAdapter = UserViewAdapter(arrayListOf(),this::onClick)
@@ -32,8 +37,7 @@ import com.example.kotlin_demo.presentation.adapters.UserViewAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this,viewModelFactory).get(ListViewModel::class.java)
         viewModel.refresh()
         userViewAdapter = countriesAdapter // context mtlb device ka access milega
         recycler_view.apply {

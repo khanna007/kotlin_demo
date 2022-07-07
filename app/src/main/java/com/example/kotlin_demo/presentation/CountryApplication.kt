@@ -2,7 +2,8 @@ package com.example.kotlin_demo.presentation
 
 import android.app.Application
 import com.example.kotlin_demo.di.component.AppComponent
- import com.example.kotlin_demo.di.core.module.AppModule
+import com.example.kotlin_demo.di.component.DaggerAppComponent
+import com.example.kotlin_demo.di.core.module.AppModule
 import com.example.kotlin_demo.di.network.NetworkModule
 
 class CountryApplication : Application() {
