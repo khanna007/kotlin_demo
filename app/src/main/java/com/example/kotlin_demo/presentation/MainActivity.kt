@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.kotlin_demo.R
-import com.example.kotlin_demo.di.compunent.AppComponent
+import com.example.kotlin_demo.di.component.AppComponent
 import com.example.kotlin_demo.di.core.module.AppModule
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

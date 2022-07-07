@@ -1,6 +1,7 @@
-package com.example.kotlin_demo.di.compunent
+package com.example.kotlin_demo.di.component
 
 import com.example.kotlin_demo.di.core.module.AppModule
+import com.example.kotlin_demo.di.core.module.DataModule
 import com.example.kotlin_demo.di.network.NetworkModule
 import com.example.kotlin_demo.presentation.CountryApplication
 import dagger.Component
@@ -10,7 +11,7 @@ import com.example.kotlin_demo.presentation.fragment.FirstFragment
 
 
 @Singleton
-@Component(modules = [AppModule::class, NetworkModule::class])
+@Component(modules = [AppModule::class, NetworkModule::class, DataModule::class])
 
 interface AppComponent {
     fun inject(application : CountryApplication)

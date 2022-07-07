@@ -3,10 +3,12 @@ package com.example.kotlin_demo.di.core.module
 import com.example.kotlin_demo.data.api.CountryInterface
 import com.example.kotlin_demo.data.remote.CountryImplementaiton
 import com.example.kotlin_demo.domain.repository.CountryRepository
+import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
+@Module
 class DataModule {
 
     @Singleton
