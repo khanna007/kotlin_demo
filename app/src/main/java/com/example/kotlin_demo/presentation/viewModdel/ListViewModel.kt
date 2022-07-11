@@ -1,19 +1,20 @@
 package com.example.kotlin_demo.presentation.viewModdel
 
- import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlin_demo.data.CountryModel
-  import com.example.kotlin_demo.domain.use_case.GetCountryUseCase
+import com.example.kotlin_demo.domain.use_case.GetCountryUseCase
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
- import io.reactivex.android.schedulers.AndroidSchedulers
- import io.reactivex.disposables.CompositeDisposable
- import io.reactivex.observers.DisposableSingleObserver
- import io.reactivex.schedulers.Schedulers
- import javax.inject.Inject
-
-
+@HiltViewModel
 class ListViewModel @Inject constructor(private val getCountryUseCase: GetCountryUseCase) : ViewModel() {
-
 
     private val disposable = CompositeDisposable()  // close or clear the variable
     val users = MutableLiveData<List<CountryModel>>()

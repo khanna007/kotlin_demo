@@ -5,8 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
-import com.example.kotlin_demo.R
+ import com.example.kotlin_demo.R
 import kotlinx.android.synthetic.main.fragment_first.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin_demo.presentation.viewModdel.ListViewModel
@@ -14,30 +13,28 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlin_demo.data.CountryModel
 import com.example.kotlin_demo.presentation.adapters.UserViewAdapter
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
 
-class FirstFragment : Fragment()  {
-      @Inject
-     lateinit var viewModelFactory: ViewModelProvider.Factory
-     lateinit var userViewAdapter: UserViewAdapter
+@AndroidEntryPoint
+class CountryFragment : Fragment()  {
+
+    lateinit var userViewAdapter: UserViewAdapter
     lateinit var viewModel: ListViewModel
     private val countriesAdapter = UserViewAdapter(arrayListOf(),this::onClick)
-
 
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
+        savedInstanceState: Bundle?): View? {
+        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this,viewModelFactory).get(ListViewModel::class.java)
+
         viewModel.refresh()
         userViewAdapter = countriesAdapter // context mtlb device ka access milega
         recycler_view.apply {
