@@ -32,7 +32,6 @@ class CountryFragment : Fragment()  {
         binding = FragmentFirstBinding.inflate(inflater,container,false)
         return  binding.getRoot()
 
-//        return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

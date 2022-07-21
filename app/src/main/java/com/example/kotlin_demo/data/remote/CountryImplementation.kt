@@ -6,7 +6,7 @@ import com.example.kotlin_demo.domain.repository.CountryRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
-class CountryImplementaiton @Inject constructor(private  val api: CountryInterface) :CountryRepository{
+class CountryImplementation @Inject constructor(private  val api: CountryInterface) :CountryRepository{
 
     override  fun getCountries(): Single<List<CountryModel>> {
         return  api.getCountries()
