@@ -5,20 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
- import com.example.kotlin_demo.R
-import kotlinx.android.synthetic.main.fragment_first.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin_demo.presentation.viewModdel.ListViewModel
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlin_demo.data.CountryModel
+import com.example.kotlin_demo.databinding.FragmentFirstBinding
 import com.example.kotlin_demo.presentation.adapters.UserViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class CountryFragment : Fragment()  {
-
+    lateinit var  binding : FragmentFirstBinding
     lateinit var userViewAdapter: UserViewAdapter
     lateinit var viewModel: ListViewModel
     private val countriesAdapter = UserViewAdapter(arrayListOf(),this::onClick)
@@ -29,15 +28,19 @@ class CountryFragment : Fragment()  {
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_first, container, false)
+
+        binding = FragmentFirstBinding.inflate(inflater,container,false)
+        return  binding.getRoot()
+
+//        return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.refresh()
-        userViewAdapter = countriesAdapter // context mtlb device ka access milega
-        recycler_view.apply {
+        userViewAdapter = countriesAdapter
+       binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter =userViewAdapter
         }
@@ -47,20 +50,20 @@ class CountryFragment : Fragment()  {
     fun observeViewModel() {
         viewModel.users.observe(this, Observer {countries ->
             countries?.let {
-                recycler_view.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.VISIBLE
                 countriesAdapter.updateUserList(it) }
         })
 
         viewModel.userLoadError.observe(this, Observer { isError ->
-            isError?.let { list_error.visibility = if(it) View.VISIBLE else View.GONE }
+            isError?.let { binding.listError.visibility = if(it) View.VISIBLE else View.GONE }
         })
 
         viewModel.userLoading.observe(this, Observer { isLoading ->
             isLoading?.let {
-                loading_view.visibility = if(it) View.VISIBLE else View.GONE
+                binding.loadingView.visibility = if(it) View.VISIBLE else View.GONE
                 if(it) {
-                    list_error.visibility = View.GONE
-                    recycler_view.visibility = View.GONE
+                    binding.listError.visibility = View.GONE
+                    binding.recyclerView.visibility = View.GONE
                 }
             }
         })

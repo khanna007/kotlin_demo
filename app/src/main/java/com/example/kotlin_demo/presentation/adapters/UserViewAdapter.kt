@@ -1,12 +1,12 @@
 package com.example.kotlin_demo.presentation.adapters
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_demo.R
 import com.example.kotlin_demo.data.CountryModel
-import kotlinx.android.synthetic.main.card_view.view.*
 
 
 class UserViewAdapter(private val country: ArrayList<CountryModel>,
@@ -20,9 +20,12 @@ class UserViewAdapter(private val country: ArrayList<CountryModel>,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_view, parent, false)
-        return  UserViewHolder(view)
+        val binding: ViewDataBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.card_view,
+            parent,
+            false)
+        return  UserViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
@@ -34,8 +37,7 @@ class UserViewAdapter(private val country: ArrayList<CountryModel>,
         return country.size
     }
 
-   inner class UserViewHolder( itemView : View) : RecyclerView.ViewHolder(itemView){
-        private val imageView = itemView.imageView
+   inner class UserViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root){
          val countryName: TextView = itemView.findViewById(R.id.name)
          val countryCapital: TextView = itemView.findViewById(R.id.capital)
         init {
