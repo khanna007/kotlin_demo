@@ -16,21 +16,22 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class CountryFragment : Fragment()  {
-    lateinit var  binding : FragmentFirstBinding
+class CountryFragment : Fragment() {
+    lateinit var binding: FragmentFirstBinding
     lateinit var userViewAdapter: UserViewAdapter
     lateinit var viewModel: ListViewModel
-    private val countriesAdapter = UserViewAdapter(arrayListOf(),this::onClick)
+    private val countriesAdapter = UserViewAdapter(arrayListOf(), this::onClick)
 
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?
+    ): View? {
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
 
-        binding = FragmentFirstBinding.inflate(inflater,container,false)
-        return  binding.getRoot()
+        binding = FragmentFirstBinding.inflate(inflater, container, false)
+        return binding.getRoot()
 
     }
 
@@ -39,36 +40,33 @@ class CountryFragment : Fragment()  {
 
         viewModel.refresh()
         userViewAdapter = countriesAdapter
-       binding.recyclerView.apply {
+        binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter =userViewAdapter
+            adapter = userViewAdapter
         }
         observeViewModel()
     }
 
     fun observeViewModel() {
-        viewModel.users.observe(this, Observer {countries ->
-            countries?.let {
-                binding.recyclerView.visibility = View.VISIBLE
-                countriesAdapter.updateUserList(it) }
+        viewModel.users.observe(this, Observer { countries ->
+            binding.recyclerView.visibility = View.VISIBLE
+            countriesAdapter.updateUserList(countries)
         })
 
         viewModel.userLoadError.observe(this, Observer { isError ->
-            isError?.let { binding.listError.visibility = if(it) View.VISIBLE else View.GONE }
+            binding.listError.visibility = if (isError) View.VISIBLE else View.GONE
         })
 
         viewModel.userLoading.observe(this, Observer { isLoading ->
-            isLoading?.let {
-                binding.loadingView.visibility = if(it) View.VISIBLE else View.GONE
-                if(it) {
-                    binding.listError.visibility = View.GONE
-                    binding.recyclerView.visibility = View.GONE
-                }
+            binding.loadingView.visibility = if (isLoading) View.VISIBLE else View.GONE
+            if (isLoading) {
+                binding.listError.visibility = View.GONE
+                binding.recyclerView.visibility = View.GONE
             }
         })
     }
 
-      fun onClick(countryModel: CountryModel ) {
+    fun onClick(countryModel: CountryModel) {
 //        dbCountrydow.insert(CountryMapper().transferDomailModelToLocalModel(countryModel))
 //        println("postion$position")
     }
