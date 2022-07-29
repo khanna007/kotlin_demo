@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin_demo.presentation.viewModdel.ListViewModel
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.kotlin_demo.data.CountryModel
 import com.example.kotlin_demo.databinding.FragmentFirstBinding
+import com.example.kotlin_demo.domain.model.Country
 import com.example.kotlin_demo.presentation.adapters.UserViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -66,7 +66,7 @@ class CountryFragment : Fragment() {
         })
     }
 
-    fun onClick(countryModel: CountryModel) {
+    fun onClick(countryModel: Country) {
 //        dbCountrydow.insert(CountryMapper().transferDomailModelToLocalModel(countryModel))
 //        println("postion$position")
     }

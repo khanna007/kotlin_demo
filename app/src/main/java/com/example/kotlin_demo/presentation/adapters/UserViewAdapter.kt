@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_demo.R
-import com.example.kotlin_demo.data.CountryModel
+import com.example.kotlin_demo.domain.model.Country
 import kotlinx.android.synthetic.main.card_view.view.*
 
 
-class UserViewAdapter(private val country: ArrayList<CountryModel>,
-                      private val itemClick : (countryModel : CountryModel)->Unit) :
+class UserViewAdapter(private val country: ArrayList<Country>,
+                      private val itemClick : (Country : Country)->Unit) :
     RecyclerView.Adapter<UserViewAdapter.UserViewHolder>() {
 
-    fun updateUserList(newUser:List<CountryModel>){
+    fun updateUserList(newUser:List<Country>){
         country.clear()
         country.addAll(newUser)
         notifyDataSetChanged()
@@ -35,10 +35,10 @@ class UserViewAdapter(private val country: ArrayList<CountryModel>,
     }
 
    inner class UserViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind (item:CountryModel){
+        fun bind (item:Country){
             with(itemView){
                 name.text=item.countryName
-                capital.text=item.capital
+                capital.text=item.countryCapital
 
             }
         }
